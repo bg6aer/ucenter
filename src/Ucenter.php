@@ -1,14 +1,12 @@
 <?php namespace Binaryoung\Ucenter;
 
-use Config;
-
 class Ucenter
 {
     public function __construct()
     {
 
         if (!defined('UC_DBHOST')) {
-            $config = Config::get('ucenter');
+            $config = config('ucenter');
             define('UC_CONNECT', $config['connect']);
             define('UC_DBHOST', $config['dbhost']);
             define('UC_DBUSER', $config['dbuser']);

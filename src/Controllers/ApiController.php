@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Controller;
 use Binaryoung\Ucenter\Contracts\Api;
-use Request,Config;
 use Binaryoung\Ucenter\Services\Help;
 
 class ApiController extends Controller 
@@ -19,7 +18,7 @@ class ApiController extends Controller
     		define('API_RETURN_FAILED', -1);
     		define('API_RETURN_FORBIDDEN', -2);
 
-    		define('UC_KEY', Config::get('ucenter.key'));
+    		define('UC_KEY', config('ucenter.key'));
 
     		define('API_ROOT', __DIR__.'/../');
         }
@@ -27,7 +26,7 @@ class ApiController extends Controller
 
 	public function run(Api $api)
 	{
-        $code = Request::input('code');
+        $code = app('request')->__get('code');
         parse_str(self::authcode($code, 'DECODE', UC_KEY), $get);
 
         if (empty($get)) {
